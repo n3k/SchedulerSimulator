@@ -21,14 +21,14 @@ class Processor(threading.Thread):
         self.stop_request.set()
         super(Processor, self).join(timeout)
 
-    def _update_processes_cpu_time_instances(self):
+    def __update_processes_cpu_time_instances(self):
         for p in self.system_manager.system_process_list:
             if p.state is p.cpu_execution_process:
                 p.cpu_execution_time_instances.append(1)
             else:
                 p.cpu_execution_time_instances.append(0)
 
-    def _adjust_processes_cpu_time_instances(self):
+    def __adjust_processes_cpu_time_instances(self):
         """This method inserts zeros at the cpu_time_instances list of those processes
         that were created when the simulator was already running. This adjust the list
         in a way of saying that a given processes was not being executed at the time"""
@@ -40,10 +40,9 @@ class Processor(threading.Thread):
     def process_task(self, process):
 
         while process.device_work_units["CPU"] > 0 and self.interrupt == False:
-            Logger.GetInstance().log(["AND THE CURRENT PROCESS IS: {0} and is in {1}".format(process.pid, process.state)])
+            Logger().log(["AND THE CURRENT PROCESS IS: {0} and is in {1}".format(process.pid, process.state)])
             self.system_manager.system_clock.tick()
-            self._update_processes_cpu_time_instances()
-
+            self.__update_processes_cpu_time_instances()
 
 
     def process_ready_execution_exists(self):
@@ -54,6 +53,7 @@ class Processor(threading.Thread):
                 return True
         return False
 
+
     def run(self):
         sleep(3) # for slow-start xD
         while not self.stop_request.is_set():
@@ -61,9 +61,9 @@ class Processor(threading.Thread):
             while not self.process_ready_execution_exists() and not self.stop_request.is_set():
                 sleep(1)
                 self.system_manager.system_clock.tick()
-                self._update_processes_cpu_time_instances()
+                self.__update_processes_cpu_time_instances()
                 self.idle_time_points.append(self.system_manager.system_clock.read_system_clock())
-                Logger.GetInstance().log([self.idle_time_points])
+                Logger().log([self.idle_time_points])
 
             if not self.stop_request.is_set():
                 process = self.queue.get()
@@ -71,4 +71,4 @@ class Processor(threading.Thread):
                 self.queue.task_done()
                 sleep(1)
 
-        self._adjust_processes_cpu_time_instances()
+        self.__adjust_processes_cpu_time_instances()

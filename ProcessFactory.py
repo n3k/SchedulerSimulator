@@ -46,7 +46,7 @@ class ProcessFactory(object):
 
 
     def create_process(self):
-        priority = randrange(0,6)
+        priority = randrange(0, 6)
         pid = self._generate_pid.next()
 
         cpu_bursts = randrange(1, 5)
@@ -57,7 +57,7 @@ class ProcessFactory(object):
         for operation in self._generate_operations_vector(cpu_bursts,io_bursts):
             composite_operation.add_operation(operation)
 
-        process = Process(pid,priority,composite_operation ,systemManager=self.system_manager)
+        process = Process(pid, priority, composite_operation, systemManager=self.system_manager)
 
         return process
     """
