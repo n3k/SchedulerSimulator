@@ -40,7 +40,7 @@ class LongTermScheduler(Scheduler):
                 jobs_count = self.system_manager.max_system_processes - len(self.process_list)
                 for i in xrange(0, randrange(jobs_count)):
                     process = self.process_factory.create_process()
-                    Logger().log([process.process_operations.describe()])
+                    Logger().log([process.process_operations.__str__()])
                     self.process_list.append(process) #ProcessList
                     #Attach to system clock
                     self.system_manager.system_clock.attach(process)
