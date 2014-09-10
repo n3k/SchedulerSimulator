@@ -21,9 +21,6 @@ class Operation(object):
     def remove_operation(self, operation):
         pass
 
-    @abstractmethod
-    def describe(self):
-        pass
 
 
 class CompositeOperation(Operation):
@@ -52,10 +49,10 @@ class CompositeOperation(Operation):
         else:
             operation.execute_change_state(process)
 
-    def describe(self):
+    def __str__(self):
         message = "Process Operations:\n"
         for op in self.operations:
-            message += "{0}\n".format(op.describe())
+            message += "{0}\n".format(str(op))
         return message
 
 
@@ -76,7 +73,7 @@ class CPUOperation(Operation):
     def remove_operation(self, operation):
         pass
 
-    def describe(self):
+    def __str__(self):
         return "Device: {0} - Units: {1}".format(self.device,self.units)
 
 
@@ -97,5 +94,5 @@ class IOOperation(Operation):
     def remove_operation(self, operation):
         pass
 
-    def describe(self):
+    def __str__(self):
         return "Device: {0} - Units: {1}".format(self.device,self.units)
