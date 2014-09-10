@@ -9,18 +9,7 @@ from Logger import Logger
 
 class SystemManager(object):
 
-
-    #__metaclass__ = Singleton
-
-    _instance = None
-    _lock = threading.RLock()
-
     def __init__(self):
-
-        # Cannot hide ctor, so raise an error from 2nd instantiation
-        if (SystemManager._instance != None):
-            raise("This is a Singleton! use Singleton.GetInstance method")
-        SystemManager._instance = self
 
         self.timer = 15
 
@@ -38,48 +27,34 @@ class SystemManager(object):
         self.io_devices = self.devices.copy()
         del self.io_devices["CPU"]
 
-        Logger() # initialize the Logging System (singleton)
-
-
-    @staticmethod
-    def GetInstance():
-        if (SystemManager._instance == None):
-            SystemManager._lock.acquire()
-            if (SystemManager._instance == None):
-                SystemManager._instance = SystemManager()
-            SystemManager._lock.release()
-        return SystemManager._instance
-    @staticmethod
-    def Reset():
-        SystemManager._instance = None
 
 
     def start_processor(self):
-        self.interrupt_mechanism = InterruptMechanism()
+        #self.interrupt_mechanism = InterruptMechanism()
         self.processor = Processor(systemManager=self, queue=self.processor_task_queue)
         self.devices["CPU"] = self.processor
-        self.interrupt_mechanism.attach(observer=self.processor)
+        #self.interrupt_mechanism.attach(observer=self.processor)
         self.processor.setDaemon(True)
         self.processor.start()
-        Logger.GetInstance().log(["Processor Started"])
+        Logger().log(["Processor Started"])
 
     def start_long_scheduler(self):
         self.longScheduler = LongTermScheduler(systemManager=self, processList=self.system_process_list)
         self.longScheduler.setDaemon(True)
         self.longScheduler.start()
-        Logger.GetInstance().log(["Long-Term Scheduler Started"])
+        Logger().log(["Long-Term Scheduler Started"])
 
     def start_short_scheduler(self):
         self.shortScheduler = FCFS(systemManager=self,processList=self.system_process_list)
         self.shortScheduler.setDaemon(True)
         self.shortScheduler.start()
-        Logger.GetInstance().log(["Short-Term Scheduler Started"])
+        Logger().log(["Short-Term Scheduler Started"])
 
     def start_io_device(self, device):
         self.devices[device] = IODevice(device, systemManager=self,processList=self.system_process_list)
         self.devices[device].setDaemon(True)
         self.devices[device].start()
-        Logger.GetInstance().log(["{0} Device Started".format(device)])
+        Logger().log(["{0} Device Started".format(device)])
 
     def start_system_device(self, device):
         if device == "CPU":
@@ -108,7 +83,7 @@ class SystemManager(object):
             sleep(3)
 
         self.shortScheduler.join()
-        for k,v in self.devices.items():
+        for k, v in self.devices.items():
             if k != "CPU":
                 v.join()
         self.processor.join()

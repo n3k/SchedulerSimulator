@@ -26,7 +26,7 @@ class IODevice(threading.Thread):
     def fetch_process_to_execute(self):
         aux = float('Infinity')
         result = None
-        Logger.GetInstance().log([c.pid for c in self.device_process_list])
+        Logger().log([c.pid for c in self.device_process_list])
         for p in self.device_process_list:
             if p.last_device_executed_time[self.device] < aux:
                 aux = p.last_device_executed_time[self.device]
@@ -43,7 +43,7 @@ class IODevice(threading.Thread):
                 self.scan_for_blocked_processes()
                 process = self.fetch_process_to_execute()
             if process != None:
-                clock_value = clock_value=self.system_manager.system_clock.read_system_clock()
+                clock_value = self.system_manager.system_clock.read_system_clock()
                 process.change_state(clock_value=clock_value)
                 while process.device_work_units[self.device] > 0:
                     pass

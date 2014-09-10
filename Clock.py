@@ -1,8 +1,11 @@
 __author__ = 'n3k'
 
 from Logger import Logger
+from abc import ABCMeta, abstractmethod
 
 class Subject(object):
+
+    __metaclass__ = ABCMeta
 
     def __init__(self):
         self._observers = []
@@ -17,9 +20,10 @@ class Subject(object):
         except ValueError:
             pass
 
-    def notify(self, clock_value):
-        for observer in self._observers:
-            observer.update(clock_value)
+    @abstractmethod
+    def notify(self, params={}):
+        pass
+
 
 
 class InterruptMechanism(Subject):
@@ -33,17 +37,22 @@ class Clock(Subject):
     def __init__(self):
         super(Clock,self).__init__()
         self._clock_value = 0
-        self.clock = self._next_clock_cycle()
+        self.clock = self.__next_clock_cycle()
+
+    def notify(self, params={}):
+        for observer in self._observers:
+            observer.update(params["clock"])
 
     def read_system_clock(self):
         return self._clock_value
 
-    def _next_clock_cycle(self):
+    def __next_clock_cycle(self):
+        """Generator"""
         cycle = 0
         while True:
             self._clock_value = cycle
-            Logger.GetInstance().log(["Tiempo: {0}".format(self._clock_value)])
-            self.notify(self._clock_value)
+            Logger().log(["Tiempo: {0}".format(self._clock_value)])
+            self.notify({"clock" : self._clock_value})
             yield cycle
             cycle += 1
 

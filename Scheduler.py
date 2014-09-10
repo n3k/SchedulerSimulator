@@ -28,7 +28,7 @@ class Scheduler(threading.Thread):
 class LongTermScheduler(Scheduler):
 
     def __init__(self, systemManager, processList, period=5):
-        super(LongTermScheduler,self).__init__(systemManager=systemManager, processList=processList)
+        super(LongTermScheduler, self).__init__(systemManager=systemManager, processList=processList)
         self.check_period = period
         self.process_factory = ProcessFactory(systemManager=systemManager)
 
@@ -38,9 +38,9 @@ class LongTermScheduler(Scheduler):
         while not self.stop_request.is_set():
             if len(self.process_list) < self.system_manager.max_system_processes:
                 jobs_count = self.system_manager.max_system_processes - len(self.process_list)
-                for i in xrange(0,randrange(jobs_count)):
+                for i in xrange(0, randrange(jobs_count)):
                     process = self.process_factory.create_process()
-                    Logger.GetInstance().log([process.process_operations.describe()])
+                    Logger().log([process.process_operations.describe()])
                     self.process_list.append(process) #ProcessList
                     #Attach to system clock
                     self.system_manager.system_clock.attach(process)
@@ -51,19 +51,19 @@ class LongTermScheduler(Scheduler):
         """
 
         process = self.process_factory.create_process()
-        Logger.GetInstance().log([process.process_operations.describe()])
+        Logger().log([process.process_operations.describe()])
         self.process_list.append(process) #ProcessList
         #Attach to system clock
         self.system_manager.system_clock.attach(process)
 
         process = self.process_factory.create_process()
-        Logger.GetInstance().log([process.process_operations.describe()])
+        Logger().log([process.process_operations.describe()])
         self.process_list.append(process) #ProcessList
         #Attach to system clock
         self.system_manager.system_clock.attach(process)
 
         process = self.process_factory.create_process()
-        Logger.GetInstance().log([process.process_operations.describe()])
+        Logger().log([process.process_operations.describe()])
         self.process_list.append(process) #ProcessList
         #Attach to system clock
         self.system_manager.system_clock.attach(process)
@@ -100,7 +100,7 @@ class FCFS(ShortTermScheduler):
     def fetch_process_to_execute(self):
         aux = float('Infinity')
         result = None
-        Logger.GetInstance().log([c.pid for c in self.short_term_process_list])
+        Logger().log([c.pid for c in self.short_term_process_list])
         for p in self.short_term_process_list:
             if p.last_device_executed_time["CPU"] < aux:
                 aux = p.last_device_executed_time["CPU"]
@@ -128,7 +128,8 @@ class FCFS(ShortTermScheduler):
                 try:
                     self.short_term_process_list.remove(process)
                 except:
-                    Logger.GetInstance().log(["Whoooops"])
+                    pass
+
 
 
 class RoundRobin(ShortTermScheduler):
@@ -138,8 +139,7 @@ class RoundRobin(ShortTermScheduler):
 
     def run(self):
         while True:
-            # Mejor que armar las tareas aca es crear un abstract factory del process Factory que sirva para RoundRobin
-            # aca tengo que armar las tareas del proceso elegido para mandarle al procesador
+            #
             # Interrupt()
             pass
 
