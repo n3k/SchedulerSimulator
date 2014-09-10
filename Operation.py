@@ -21,10 +21,6 @@ class Operation(object):
     def remove_operation(self, operation):
         pass
 
-<<<<<<< HEAD
-=======
-
->>>>>>> hotfix/1.2
 
 class CompositeOperation(Operation):
 
@@ -55,11 +51,8 @@ class CompositeOperation(Operation):
     def __str__(self):
         message = "Process Operations:\n"
         for op in self.operations:
-<<<<<<< HEAD
             message += "{0}\n".format(op.__str__())
-=======
             message += "{0}\n".format(str(op))
->>>>>>> hotfix/1.2
         return message
 
 
