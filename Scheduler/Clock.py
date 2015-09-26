@@ -51,7 +51,7 @@ class Clock(Subject):
         cycle = 0
         while True:
             self._clock_value = cycle
-            Logger().log(["Tiempo: {0}".format(self._clock_value)])
+            Logger().log(["Time: {0}".format(self._clock_value)])
             self.notify({"clock" : self._clock_value})
             yield cycle
             cycle += 1

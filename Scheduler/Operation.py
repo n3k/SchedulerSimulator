@@ -22,7 +22,6 @@ class Operation(object):
         pass
 
 
-
 class CompositeOperation(Operation):
 
     def __init__(self, units=0):
@@ -52,6 +51,7 @@ class CompositeOperation(Operation):
     def __str__(self):
         message = "Process Operations:\n"
         for op in self.operations:
+            message += "{0}\n".format(op.__str__())
             message += "{0}\n".format(str(op))
         return message
 

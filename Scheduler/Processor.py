@@ -1,8 +1,9 @@
 __author__ = 'n3k'
 
+from Logger import Logger
 import threading
 from time import sleep
-from Logger import Logger
+
 
 class Processor(threading.Thread):
 

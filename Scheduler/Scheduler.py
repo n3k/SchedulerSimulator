@@ -1,10 +1,9 @@
 __author__ = 'n3k'
 
-
-from abc import ABCMeta,abstractmethod
+from ProcessFactory import ProcessFactory
+from abc import ABCMeta, abstractmethod
 from Processor import *
 from time import sleep
-from ProcessFactory import ProcessFactory
 from random import randrange
 
 class Scheduler(threading.Thread):
@@ -40,7 +39,11 @@ class LongTermScheduler(Scheduler):
                 jobs_count = self.system_manager.max_system_processes - len(self.process_list)
                 for i in xrange(0, randrange(jobs_count)):
                     process = self.process_factory.create_process()
+
+                    Logger().log([process.process_operations.__str__()])
+
                     Logger().log([str(process.process_operations)])
+
                     self.process_list.append(process) #ProcessList
                     #Attach to system clock
                     self.system_manager.system_clock.attach(process)

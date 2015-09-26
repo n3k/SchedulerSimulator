@@ -1,7 +1,8 @@
 __author__ = 'n3k'
 
-import sys
 from Logger import Logger
+import sys
+
 
 class ProcessState(object):
 
@@ -12,6 +13,9 @@ class ProcessState(object):
         pass
 
     def update(self, process, clock_value=0):
+        pass
+
+    def __str__(self):
         pass
 
 class StateNewProcess(ProcessState):
@@ -27,6 +31,9 @@ class StateNewProcess(ProcessState):
         process.last_device_executed_time["CPU"] = clock_value
         # Change state to Ready
         process.change_state(clock_value)
+
+    def __str__(self):
+        return "NewProcess"
 
 #Only the short-term-scheduler controls this state
 class StateReadyProcess(ProcessState):
@@ -55,6 +62,9 @@ class StateReadyProcess(ProcessState):
         process.wait_device_time[self.device_name] += 1
         # The short-term-scheduler is the one who calls change_state() in this case
 
+    def __str__(self):
+        return "ReadyProcess"
+
 
 class StateCPUExecutionProcess(ProcessState):
 
@@ -78,6 +88,9 @@ class StateCPUExecutionProcess(ProcessState):
         if not result :
             Logger().log(["Error (CPUStateExecution): this shouldn't have happened"])
             sys.exit(-1)
+
+    def __str__(self):
+        return "CPUExecutionProcess"
 
 
 class StateBlockedProcess(ProcessState):
@@ -103,6 +116,9 @@ class StateBlockedProcess(ProcessState):
 
     def update(self, process, clock_value=0):
         process.wait_device_time[self.device_name] += 1
+
+    def __str__(self):
+        return "BlockedProcess"
 
 
 class StateIOExecutionProcess(ProcessState):
@@ -130,6 +146,9 @@ class StateIOExecutionProcess(ProcessState):
         else:
             Logger().log(["Process {0} IO-Executed at time {1}".format(process.pid,clock_value)])
 
+    def __str__(self):
+        return "IOExecutionProcess"
+
 class StateExitProcess(ProcessState):
 
     def change_state(self, process, clock_value=0):
@@ -141,7 +160,8 @@ class StateExitProcess(ProcessState):
         manager = process.system_manager
         manager.system_clock.detach(process)
 
-
+    def __str__(self):
+        return "ExitProcess"
 
 class Process(object):
 
@@ -173,6 +193,9 @@ class Process(object):
 
         self.state = self.new_process
         self.previous_state = None
+
+    def __str__(self):
+        return "Process PID: {0} - State: {1}".format(self.pid, self.state)
 
     def process_device_unit(self, device):
         if self.device_work_units[device] > 0:

@@ -1,0 +1,202 @@
+Here is the logged information
+---------------------------------------------------
+Long-Term Scheduler Started
+Process Operations:
+Device: CPU - Units: 2
+Device: CPU - Units: 2
+
+Process Operations:
+Device: CPU - Units: 2
+Device: CPU - Units: 2
+
+Short-Term Scheduler Started
+DISK Device Started
+Processor Started
+Time: 0
+Process 1 in NEW State at time 0
+Process 1 in READY State at time 0
+1
+[0]
+Process 1 in Execution-State at time 0
+AND THE CURRENT PROCESS IS: 1 and is in CPUExecutionProcess
+Time: 1
+Process 1 executed at time 1
+AND THE CURRENT PROCESS IS: 1 and is in CPUExecutionProcess
+Time: 2
+Process 1 executed at time 2
+Process 1 Finished at time 2
+Process Operations:
+Device: CPU - Units: 4
+Device: CPU - Units: 4
+
+Process Operations:
+Device: CPU - Units: 4
+Device: CPU - Units: 4
+
+Time: 3
+Process 2 in NEW State at time 3
+Process 2 in READY State at time 3
+2
+Process 2 in Execution-State at time 3
+[0, 3]
+AND THE CURRENT PROCESS IS: 2 and is in CPUExecutionProcess
+Time: 4
+Process 2 executed at time 4
+AND THE CURRENT PROCESS IS: 2 and is in CPUExecutionProcess
+Time: 5
+Process 2 executed at time 5
+AND THE CURRENT PROCESS IS: 2 and is in CPUExecutionProcess
+Time: 6
+Process 2 executed at time 6
+AND THE CURRENT PROCESS IS: 2 and is in CPUExecutionProcess
+Time: 7
+Process 2 executed at time 7
+Process 2 Finished at time 7
+Time: 8
+[0, 3, 8]
+Time: 9
+[0, 3, 8, 9]
+Process Operations:
+Device: CPU - Units: 9
+Device: CPU - Units: 9
+
+Process Operations:
+Device: CPU - Units: 9
+Device: CPU - Units: 9
+
+Time: 10
+Process 3 in NEW State at time 10
+Process 3 in READY State at time 10
+3
+Process 3 in Execution-State at time 10
+AND THE CURRENT PROCESS IS: 3 and is in CPUExecutionProcess
+Time: 11
+Process 3 executed at time 11
+AND THE CURRENT PROCESS IS: 3 and is in CPUExecutionProcess
+Time: 12
+Process 3 executed at time 12
+AND THE CURRENT PROCESS IS: 3 and is in CPUExecutionProcess
+Time: 13
+Process 3 executed at time 13
+AND THE CURRENT PROCESS IS: 3 and is in CPUExecutionProcess
+Time: 14
+Process 3 executed at time 14
+AND THE CURRENT PROCESS IS: 3 and is in CPUExecutionProcess
+Time: 15
+Process 3 executed at time 15
+AND THE CURRENT PROCESS IS: 3 and is in CPUExecutionProcess
+Time: 16
+Process 3 executed at time 16
+AND THE CURRENT PROCESS IS: 3 and is in CPUExecutionProcess
+Time: 17
+Process 3 executed at time 17
+AND THE CURRENT PROCESS IS: 3 and is in CPUExecutionProcess
+Time: 18
+Process 3 executed at time 18
+AND THE CURRENT PROCESS IS: 3 and is in CPUExecutionProcess
+Time: 19
+Process 3 executed at time 19
+Process 3 Finished at time 19
+Time: 20
+[0, 3, 8, 9, 10, 20]
+Time: 21
+[0, 3, 8, 9, 10, 20, 21]
+Time: 22
+[0, 3, 8, 9, 10, 20, 21, 22]
+Process Operations:
+Device: CPU - Units: 2
+Device: CPU - Units: 2
+Device: DISK - Units: 2
+Device: DISK - Units: 2
+Device: CPU - Units: 4
+Device: CPU - Units: 4
+Device: DISK - Units: 6
+Device: DISK - Units: 6
+Device: CPU - Units: 2
+Device: CPU - Units: 2
+
+Process Operations:
+Device: CPU - Units: 2
+Device: CPU - Units: 2
+Device: DISK - Units: 2
+Device: DISK - Units: 2
+Device: CPU - Units: 4
+Device: CPU - Units: 4
+Device: DISK - Units: 6
+Device: DISK - Units: 6
+Device: CPU - Units: 2
+Device: CPU - Units: 2
+
+Time: 23
+Process 4 in NEW State at time 23
+Process 4 in READY State at time 23
+4
+[0, 3, 8, 9, 10, 20, 21, 22, 23]
+Process 4 in Execution-State at time 23
+AND THE CURRENT PROCESS IS: 4 and is in CPUExecutionProcess
+Time: 24
+Process 4 executed at time 24
+AND THE CURRENT PROCESS IS: 4 and is in CPUExecutionProcess
+Time: 25
+Process 4 executed at time 25
+4
+Process 4 in IO-Execution State
+Time: 26
+Process 4 IO-Executed at time 26
+[0, 3, 8, 9, 10, 20, 21, 22, 23, 26]
+Time: 27
+Process 4 IO-Executed at time 27
+[0, 3, 8, 9, 10, 20, 21, 22, 23, 26, 27]
+Time: 28
+Process 4 Ready-State
+4
+Process 4 Finished IO at time 28
+Process 4 in Execution-State at time 28
+[0, 3, 8, 9, 10, 20, 21, 22, 23, 26, 27, 28]
+AND THE CURRENT PROCESS IS: 4 and is in CPUExecutionProcess
+Time: 29
+Process 4 executed at time 29
+AND THE CURRENT PROCESS IS: 4 and is in CPUExecutionProcess
+Time: 30
+Process 4 executed at time 30
+AND THE CURRENT PROCESS IS: 4 and is in CPUExecutionProcess
+Time: 31
+Process 4 executed at time 31
+AND THE CURRENT PROCESS IS: 4 and is in CPUExecutionProcess
+Time: 32
+Process 4 executed at time 32
+4
+Process 4 in IO-Execution State
+Time: 33
+Process 4 IO-Executed at time 33
+[0, 3, 8, 9, 10, 20, 21, 22, 23, 26, 27, 28, 33]
+Time: 34
+Process 4 IO-Executed at time 34
+[0, 3, 8, 9, 10, 20, 21, 22, 23, 26, 27, 28, 33, 34]
+Time: 35
+Process 4 IO-Executed at time 35
+[0, 3, 8, 9, 10, 20, 21, 22, 23, 26, 27, 28, 33, 34, 35]
+Time: 36
+Process 4 IO-Executed at time 36
+[0, 3, 8, 9, 10, 20, 21, 22, 23, 26, 27, 28, 33, 34, 35, 36]
+Time: 37
+Process 4 IO-Executed at time 37
+[0, 3, 8, 9, 10, 20, 21, 22, 23, 26, 27, 28, 33, 34, 35, 36, 37]
+Time: 38
+Process 4 IO-Executed at time 38
+[0, 3, 8, 9, 10, 20, 21, 22, 23, 26, 27, 28, 33, 34, 35, 36, 37, 38]
+Time: 39
+Process 4 Ready-State
+4
+Process 4 Finished IO at time 39
+Process 4 in Execution-State at time 39
+[0, 3, 8, 9, 10, 20, 21, 22, 23, 26, 27, 28, 33, 34, 35, 36, 37, 38, 39]
+AND THE CURRENT PROCESS IS: 4 and is in CPUExecutionProcess
+Time: 40
+Process 4 executed at time 40
+AND THE CURRENT PROCESS IS: 4 and is in CPUExecutionProcess
+Time: 41
+Process 4 executed at time 41
+Process 4 Finished at time 41
+Time: 42
+[0, 3, 8, 9, 10, 20, 21, 22, 23, 26, 27, 28, 33, 34, 35, 36, 37, 38, 39, 42]
