@@ -1,10 +1,8 @@
 __author__ = 'n3k'
 
-
 from Process import Process
 from Operation import *
 from random import randrange
-from itertools import izip_longest
 
 class ProcessFactory(object):
 
@@ -54,7 +52,7 @@ class ProcessFactory(object):
 
         composite_operation = CompositeOperation()
 
-        for operation in self._generate_operations_vector(cpu_bursts,io_bursts):
+        for operation in self._generate_operations_vector(cpu_bursts, io_bursts):
             composite_operation.add_operation(operation)
 
         process = Process(pid, priority, composite_operation, systemManager=self.system_manager)

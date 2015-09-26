@@ -1,7 +1,7 @@
 __author__ = 'n3k'
 
-import threading
 from Logger import Logger
+import threading
 
 #FCFS behaviour
 class IODevice(threading.Thread):

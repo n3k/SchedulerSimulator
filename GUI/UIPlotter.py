@@ -1,9 +1,10 @@
+from Scheduler import SystemManager
+
 __author__ = 'n3k'
 
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-import SystemManager
 
 
 def fill_process_matrix(process_list):
@@ -63,10 +64,3 @@ def make_plot(manager):
     plt.show()
 
 
-def main():
-    manager = SystemManager.SystemManager()
-    manager.run()
-    make_plot(manager)
-
-if __name__ == "__main__":
-    main()

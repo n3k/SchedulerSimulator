@@ -1,17 +1,18 @@
 __author__ = 'n3k'
 
-from Scheduler import *
 from IODevice import IODevice
-from datetime import datetime
-from Clock import *
-import Queue
+from Clock import Clock
 from Logger import Logger
+from Scheduler import *
+from datetime import datetime
+import Queue
+
 
 class SystemManager(object):
 
     def __init__(self):
 
-        self.timer = 15
+        self.timer = 10
 
         self.init_time = datetime.now()
         self.system_clock = Clock()
@@ -20,7 +21,7 @@ class SystemManager(object):
         self.processor_task_queue = Queue.Queue(maxsize=1)
         self.longScheduler = None
         self.shortScheduler = None
-        self.max_system_processes = 15
+        self.max_system_processes = 5
         self.system_process_list = []
 
         self.devices = {"CPU" : None, "DISK" : None} #, "GRAPHIC" : None}

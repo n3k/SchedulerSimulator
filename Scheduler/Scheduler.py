@@ -1,10 +1,9 @@
 __author__ = 'n3k'
 
-
-from abc import ABCMeta,abstractmethod
+from ProcessFactory import ProcessFactory
+from abc import ABCMeta, abstractmethod
 from Processor import *
 from time import sleep
-from ProcessFactory import ProcessFactory
 from random import randrange
 
 class Scheduler(threading.Thread):
